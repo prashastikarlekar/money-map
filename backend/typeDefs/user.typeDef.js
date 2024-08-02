@@ -9,7 +9,7 @@ type User {
 }
 
 type Query {
-    users: [Users!]
+    users: [User!]
     authUser: User
     user(userId: ID!): User
 }
@@ -32,7 +32,7 @@ input LoginInput {
     password: String!
 }
 
-input LogoutResponse {
+type LogoutResponse {
     message: String!
 }
 `;
