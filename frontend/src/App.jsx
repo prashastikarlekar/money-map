@@ -12,7 +12,7 @@ import React from "react";
 
 function App() {
 	const { loading, data, error } = useQuery(GET_AUTHENTICATED_USER);
-	console.log("Authenticated user: ", data);
+	// console.log("Authenticated user: ", data);
 
 	if (loading) return null;
 	return (
