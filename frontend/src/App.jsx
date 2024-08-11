@@ -8,6 +8,7 @@ import Header from "./components/ui/Header";
 import { useQuery } from "@apollo/client";
 import { GET_AUTHENTICATED_USER } from "./graphql/queries/user.query";
 import { Toaster } from "react-hot-toast";
+import React from "react";
 
 function App() {
 	const { loading, data, error } = useQuery(GET_AUTHENTICATED_USER);
@@ -17,6 +18,7 @@ function App() {
 	return (
 		<>
 			{data?.authUser && <Header />}
+
 			<Routes>
 				<Route
 					path='/'

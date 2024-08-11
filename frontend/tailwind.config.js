@@ -7,6 +7,9 @@ export default {
 	darkMode: "class",
 	theme: {
 		// rest of the code
+		fontFamily: {
+			sans: ["Raleway", "sans-serif"],
+		},
 	},
 	plugins: [
 		addVariablesForColors,

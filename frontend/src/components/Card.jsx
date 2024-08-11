@@ -10,9 +10,9 @@ const categoryColorMap = {
 	// saving: "from-green-700 to-green-400",
 	// expense: "from-pink-800 to-pink-600",
 	// investment: "from-blue-700 to-blue-400",
-	saving: "from-[#2c5b59] to-[#6bf39d]",
-	expense: "from-[#b7094f] to-[#bd93a9]",
-	investment: "from-[#105089] to-[#9cbee7]",
+	saving: "from-[#61bc84] to-[#6bf39d]",
+	expense: "from-[#e9aa2b] to-[#e7ce9b]",
+	investment: "from-[#71c4ef] to-[#9cbee7]",
 	// Add more categories and corresponding color classes as needed
 };
 
