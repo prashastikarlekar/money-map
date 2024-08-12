@@ -39,10 +39,10 @@ const LoginPage = () => {
 	};
 
 	return (
-		<div className='flex justify-center items-center h-screen'>
+		<div className='flex justify-center items-center h-screen '>
 			<div className='flex rounded-lg overflow-hidden z-50 bg-gray-300'>
 				<div className='w-full bg-gray-100 min-w-80 sm:min-w-96 flex items-center justify-center'>
-					<div className='max-w-md w-full p-6'>
+					<div className='max-w-md w-full p-6 border-[1px] border-gray-600 bg-[#f5f4f1] rounded-3xl'>
 						<h1 className='text-3xl font-semibold mb-6 text-black text-center'>
 							Login
 						</h1>
@@ -69,7 +69,7 @@ const LoginPage = () => {
 							<div>
 								<button
 									type='submit'
-									className='w-full bg-black text-white p-2 rounded-md hover:bg-gray-800 focus:outline-none focus:bg-black  focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 transition-colors duration-300
+									className='w-full  text-white p-2 rounded-md bg-gray-600  hover:bg-pink-600 focus:outline-none focus:bg-black  focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 transition-colors duration-300
 										disabled:opacity-50 disabled:cursor-not-allowed
 									'
 									disabled={loading}>
