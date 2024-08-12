@@ -7,37 +7,94 @@ import { MdLogout } from "react-icons/md";
 import Cards from "../Cards";
 import toast from "react-hot-toast";
 import { LOGOUT } from "../../graphql/mutations/user.mutation";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
+import { GET_TRANSACTION_STATISTICS } from "../../graphql/queries/transaction.query";
+import { GET_AUTHENTICATED_USER } from "../../graphql/queries/user.query";
+import { useEffect, useState } from "react";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
-
+// const chartData = {
+// 	labels: ["Saving", "Expense", "Investment"],
+// 	datasets: [
+// 		{
+// 			label: "%",
+// 			data: [13, 8, 3],
+// 			backgroundColor: ["#61bc84", "#e9aa2b", "#71c4ef"],
+// 			// borderColor: [
+// 			// 	"rgba(75, 192, 192)",
+// 			// 	"rgba(255, 99, 132)",
+// 			// 	"rgba(54, 162, 235, 1)",
+// 			// ],
+// 			// borderWidth: 1,
+// 			borderRadius: 30,
+// 			spacing: 10,
+// 			cutout: 130,
+// 		},
+// 	],
+// };
 const HomePage = () => {
-	const chartData = {
-		labels: ["Saving", "Expense", "Investment"],
+	const { data } = useQuery(GET_TRANSACTION_STATISTICS);
+	const { data: authUserData } = useQuery(GET_AUTHENTICATED_USER);
+
+	console.log(data);
+	const [logout, { loading, client }] = useMutation(LOGOUT, {
+		refetchQueries: ["GetAuthenticatedUser"],
+	});
+
+	const [chartData, setChartData] = useState({
+		labels: [],
 		datasets: [
 			{
-				label: "%",
-				data: [13, 8, 3],
-				// backgroundColor: ["#5fa49e", "#c9576e", "#92a3d6"],
-				backgroundColor: ["#61bc84", "#e9aa2b", "#71c4ef"],
-
+				label: "$",
+				data: [],
+				backgroundColor: [],
+				borderColor: [],
 				// borderColor: [
 				// 	"rgba(75, 192, 192)",
 				// 	"rgba(255, 99, 132)",
 				// 	"rgba(54, 162, 235, 1)",
 				// ],
-				// borderWidth: 1,
+				borderWidth: 1,
 				borderRadius: 30,
 				spacing: 10,
 				cutout: 130,
 			},
 		],
-	};
-
-	const [logout, { loading, client }] = useMutation(LOGOUT, {
-		refetchQueries: ["GetAuthenticatedUser"],
 	});
+	useEffect(() => {
+		if (data?.categoryStatistics) {
+			const categories = data.categoryStatistics.map((stat) => stat.category);
+			const totalAmounts = data.categoryStatistics.map(
+				(stat) => stat.totalAmount
+			);
+			const backgroundColors = [];
+			const borderColors = [];
 
+			categories.forEach((c) => {
+				if (c === "saving") {
+					backgroundColors.push("#61bc84");
+					borderColors.push("#61bc84");
+				} else if (c === "expense") {
+					backgroundColors.push("#e9aa2b");
+					borderColors.push("#e9aa2b");
+				} else if (c === "investment") {
+					backgroundColors.push("#71c4ef");
+					borderColors.push("#71c4ef");
+				}
+			});
+			setChartData((prev) => ({
+				labels: categories,
+				datasets: [
+					{
+						...prev.datasets[0],
+						data: totalAmounts,
+						backgroundColor: backgroundColors,
+						borderColor: borderColors,
+					},
+				],
+			}));
+		}
+	}, [data]);
 	const handleLogout = async () => {
 		try {
 			console.log("Logging out...");
@@ -58,8 +115,8 @@ const HomePage = () => {
 						Navigate your finances with ease
 					</p>
 					<img
-						src={"https://tecdn.b-cdn.net/img/new/avatars/2.webp"}
-						className='w-11 h-11 rounded-full border cursor-pointer'
+						src={authUserData?.authUser.profilePicture}
+						className='w-11 h-11 rounded-full border-[0.75px] border-gray-400 cursor-pointer'
 						alt='Avatar'
 					/>
 					{!loading && (
@@ -73,7 +130,7 @@ const HomePage = () => {
 						<div className='w-6 h-6 border-t-2 border-b-2 mx-2 rounded-full animate-spin'></div>
 					)}
 				</div>
-				<div className='flex flex-wrap w-full justify-center items-center gap-6 p-8 border-2 border-gray-700 rounded-3xl bg-[#f5f4f1] h-2/5 '>
+				<div className='flex flex-wrap w-full justify-center items-center gap-6 p-8 border-2 border-gray-700 rounded-3xl bg-[#f5f4f1] h-2/5 shadow-xl'>
 					<div className='h-[330px] w-[330px] md:h-[360px] md:w-[360px]  '>
 						<Doughnut data={chartData} />
 					</div>
