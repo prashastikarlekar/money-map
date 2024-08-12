@@ -34,7 +34,7 @@ const HomePage = () => {
 		],
 	};
 
-	const [logout, { loading }] = useMutation(LOGOUT, {
+	const [logout, { loading, client }] = useMutation(LOGOUT, {
 		refetchQueries: ["GetAuthenticatedUser"],
 	});
 
@@ -42,6 +42,7 @@ const HomePage = () => {
 		try {
 			console.log("Logging out...");
 			await logout();
+			client.resetStore();
 		} catch (error) {
 			console.error("Error logging out: ", error);
 			toast.error(error.message);
