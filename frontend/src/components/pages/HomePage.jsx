@@ -72,7 +72,7 @@ const HomePage = () => {
 						<div className='w-6 h-6 border-t-2 border-b-2 mx-2 rounded-full animate-spin'></div>
 					)}
 				</div>
-				<div className='flex flex-wrap w-full justify-center items-center gap-6 p-3 border-2 border-gray-700 rounded-3xl bg-white h-2/5'>
+				<div className='flex flex-wrap w-full justify-center items-center gap-6 p-8 border-2 border-gray-700 rounded-3xl bg-[#f5f4f1] h-2/5 '>
 					<div className='h-[330px] w-[330px] md:h-[360px] md:w-[360px]  '>
 						<Doughnut data={chartData} />
 					</div>

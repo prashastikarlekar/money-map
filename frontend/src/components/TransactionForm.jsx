@@ -31,13 +31,13 @@ const TransactionForm = () => {
 
 	return (
 		<form
-			className='w-full max-w-lg flex flex-col gap-5 px-3'
+			className='w-full max-w-lg flex flex-col gap-5 px-3 '
 			onSubmit={handleSubmit}>
 			{/* TRANSACTION */}
 			<div className='flex flex-wrap'>
 				<div className='w-full'>
 					<label
-						className='block uppercase tracking-wide text-white text-xs font-bold mb-2'
+						className='block  tracking-wide text-black text-xs font-bold mb-2'
 						htmlFor='description'>
 						Transaction
 					</label>
@@ -55,7 +55,7 @@ const TransactionForm = () => {
 			<div className='flex flex-wrap gap-3'>
 				<div className='w-full flex-1 mb-6 md:mb-0'>
 					<label
-						className='block uppercase tracking-wide text-white text-xs font-bold mb-2'
+						className='block  tracking-wide text-black text-xs font-bold mb-2'
 						htmlFor='paymentType'>
 						Payment Type
 					</label>
@@ -81,7 +81,7 @@ const TransactionForm = () => {
 				{/* CATEGORY */}
 				<div className='w-full flex-1 mb-6 md:mb-0'>
 					<label
-						className='block uppercase tracking-wide text-white text-xs font-bold mb-2'
+						className='block  tracking-wide text-black text-xs font-bold mb-2'
 						htmlFor='category'>
 						Category
 					</label>
@@ -108,7 +108,7 @@ const TransactionForm = () => {
 				{/* AMOUNT */}
 				<div className='w-full flex-1 mb-6 md:mb-0'>
 					<label
-						className='block uppercase text-white text-xs font-bold mb-2'
+						className='block  text-black text-xs font-bold mb-2'
 						htmlFor='amount'>
 						Amount($)
 					</label>
@@ -126,7 +126,7 @@ const TransactionForm = () => {
 			<div className='flex flex-wrap gap-3'>
 				<div className='w-full flex-1 mb-6 md:mb-0'>
 					<label
-						className='block uppercase tracking-wide text-white text-xs font-bold mb-2'
+						className='block  tracking-wide text-black text-xs font-bold mb-2'
 						htmlFor='location'>
 						Location
 					</label>
@@ -142,7 +142,7 @@ const TransactionForm = () => {
 				{/* DATE */}
 				<div className='w-full flex-1'>
 					<label
-						className='block uppercase tracking-wide text-white text-xs font-bold mb-2'
+						className='block  tracking-wide text-black text-xs font-bold mb-2'
 						htmlFor='date'>
 						Date
 					</label>

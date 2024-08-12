@@ -11,6 +11,12 @@ export default {
 			sans: ["Raleway", "sans-serif"],
 		},
 	},
+	variants: {
+		extend: {
+			placeholderColor: ["responsive", "focus", "hover"],
+			placeholderOpacity: ["responsive", "focus", "hover"],
+		},
+	},
 	plugins: [
 		addVariablesForColors,
 		function ({ matchUtilities, theme }) {
