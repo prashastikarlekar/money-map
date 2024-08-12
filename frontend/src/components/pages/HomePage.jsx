@@ -131,9 +131,11 @@ const HomePage = () => {
 					)}
 				</div>
 				<div className='flex flex-wrap w-full justify-center items-center gap-6 p-8 border-2 border-gray-700 rounded-3xl bg-[#f5f4f1] h-2/5 shadow-xl'>
-					<div className='h-[330px] w-[330px] md:h-[360px] md:w-[360px]  '>
-						<Doughnut data={chartData} />
-					</div>
+					{data?.categoryStatistics.length > 0 && (
+						<div className='h-[330px] w-[330px] md:h-[360px] md:w-[360px]  '>
+							<Doughnut data={chartData} />
+						</div>
+					)}
 
 					<TransactionForm />
 				</div>

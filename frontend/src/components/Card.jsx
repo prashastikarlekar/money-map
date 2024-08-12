@@ -20,7 +20,7 @@ const categoryColorMap = {
 	// Add more categories and corresponding color classes as needed
 };
 
-const Card = ({ transaction }) => {
+const Card = ({ transaction, authUser }) => {
 	let { category, amount, location, date, paymentType, description } =
 		transaction;
 
@@ -94,8 +94,8 @@ const Card = ({ transaction }) => {
 				<div className='flex justify-between items-center'>
 					<p className='text-xs text-[#f5f4f1] font-bold'>{formattedDate}</p>
 					<img
-						src={"https://tecdn.b-cdn.net/img/new/avatars/2.webp"}
-						className='h-8 w-8 border rounded-full'
+						src={authUser.profilePicture}
+						className='h-8 w-8 border-[1px] border-gray-400 rounded-full'
 						alt=''
 					/>
 				</div>
