@@ -55,8 +55,7 @@ npm run dev
 ## Usage
 
 - **Registration/Login:** Users begin by registering for an account or logging into an existing one.
-- **Add Transactions:** Once logged in, users can add new transactions using the form on the homepage.![updateTransaction](https://github.com/user-attachments/assets/06a4421e-3576-4dab-8888-64226adb0e55)
-
+- **Add Transactions:** Once logged in, users can add new transactions using the form on the homepage.
 - **View Summary:** The homepage chart provides an overview of the user's financial status.
 - **Transaction History:** Users can view their transaction history on the history page, with color-coded cards for different transaction types.
 - **Update Transactions:** If needed, users can update their transactions using the provided update button.
