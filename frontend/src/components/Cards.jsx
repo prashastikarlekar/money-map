@@ -10,6 +10,9 @@ import {
 } from "../graphql/queries/user.query";
 import { useEffect, useState } from "react";
 
+import { FaAngleDoubleLeft } from "react-icons/fa";
+import { FaAngleDoubleRight } from "react-icons/fa";
+
 const Cards = () => {
 	const [selectedCategory, setSelectedCategory] = useState("All");
 	const { data, loading } = useQuery(GET_TRANSACTIONS);
@@ -27,16 +30,26 @@ const Cards = () => {
 			variables: { category: selectedCategory },
 		}
 	);
-	console.log(data);
-	console.log(categoryTransactions);
+
+	const totalCards = categoryTransactions?.categoryTransactions?.length;
+	const cardsOnPage = 3;
+	const totalPages = Math.ceil(totalCards / cardsOnPage);
+	console.log("Total cards are : ", totalCards);
+
+	const [currentPage, setCurrentPage] = useState(1);
+
+	const handlePageChange = (page) => {
+		setCurrentPage(page);
+	};
+
+	const start = (currentPage - 1) * cardsOnPage;
+	const end = currentPage * cardsOnPage;
+	const displayedTransactions =
+		categoryTransactions?.categoryTransactions?.slice(start, end);
 
 	useEffect(() => {
-		console.log("categoryTransactions: ", categoryTransactions);
+		// console.log("categoryTransactions: ", categoryTransactions);
 	}, [selectedCategory, categoryTransactions]);
-
-	// if (loading) return <p>Loading...</p>;
-
-	// console.log("cards data: ", data);
 
 	return (
 		<div className='w-full px-10 min-h-[40vh]'>
@@ -45,9 +58,10 @@ const Cards = () => {
 			</p>
 
 			<FilterTransaction handleSelectedCategory={handleSelectedCategory} />
-			<div className='w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-start mb-20'>
+			<div className='w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-start my-10'>
+				{loadingCategoryTransactions && <p>Loading...</p>}
 				{!loadingCategoryTransactions &&
-					categoryTransactions?.categoryTransactions?.map((transaction) => (
+					displayedTransactions?.map((transaction) => (
 						<Card
 							key={transaction._id}
 							transaction={transaction}
@@ -60,6 +74,11 @@ const Cards = () => {
 					No transaction history found.
 				</p>
 			)}
+			<Pagination
+				totalPages={totalPages}
+				currentPage={currentPage}
+				handlePageChange={handlePageChange}
+			/>
 		</div>
 	);
 };
@@ -78,6 +97,44 @@ export const FilterTransaction = ({ handleSelectedCategory }) => {
 				<option value='expense'>Expense</option>
 				<option value='investment'>Investment</option>
 			</select>
+		</div>
+	);
+};
+
+export const Pagination = ({ totalPages, currentPage, handlePageChange }) => {
+	const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+	console.log(pages);
+
+	return (
+		<div className='flex justify-center py-5  gap-2'>
+			<button
+				className={`flex py-1 px-2 border-[1px] border-gray-400 shadow-md rounded-md text-sm items-center gap-1  ${
+					currentPage === 1 ? "cursor-not-allowed" : ""
+				}`}
+				disabled={currentPage === 1}
+				onClick={() => handlePageChange(currentPage - 1)}>
+				<FaAngleDoubleLeft className='text-gray-600  border-black' />
+				Previous
+			</button>
+			{pages.map((page) => (
+				<button
+					key={page}
+					className={`flex py-1 px-2 border-[1px] border-gray-400 shadow-md rounded-md text-sm ${
+						currentPage === page ? "bg-gray-300" : ""
+					}`}
+					onClick={() => handlePageChange(page)}>
+					{page}
+				</button>
+			))}
+			<button
+				className={`flex py-1 px-2 border-[1px] border-gray-400 shadow-md rounded-md text-sm items-center gap-1 ${
+					currentPage === totalPages ? "cursor-not-allowed" : ""
+				}`}
+				disabled={currentPage === totalPages}
+				onClick={() => handlePageChange(currentPage + 1)}>
+				Next
+				<FaAngleDoubleRight className='text-gray-600  border-black' />
+			</button>
 		</div>
 	);
 };

@@ -56,7 +56,7 @@ const Card = ({ transaction, authUser }) => {
 					<div className='flex items-center gap-2'>
 						{!loading && (
 							<FaTrash
-								className={"cursor-pointer text-[#f5f4f1]"}
+								className={"cursor-pointer text-[#f5f4f1] hover:text-red-700"}
 								onClick={handleDelete}
 							/>
 						)}
@@ -65,7 +65,7 @@ const Card = ({ transaction, authUser }) => {
 						)}
 						<Link to={`/transaction/${transaction._id}`}>
 							<HiPencilAlt
-								className='cursor-pointer text-[#f5f4f1]'
+								className='cursor-pointer text-[#f5f4f1] hover:text-blue-500'
 								size={20}
 							/>
 						</Link>
@@ -82,7 +82,7 @@ const Card = ({ transaction, authUser }) => {
 					<span className='font-normal'> {paymentType}</span>
 				</p>
 				<p className='text-[#f5f4f1] flex items-center gap-1 text-lg font-semibold'>
-					<FaSackDollar />
+					<FaSackDollar className='' />
 					&nbsp; Amount: &nbsp;
 					<span className='font-normal'>${amount}</span>
 				</p>
