@@ -36,7 +36,7 @@ const HomePage = () => {
 	const { data } = useQuery(GET_TRANSACTION_STATISTICS);
 	const { data: authUserData } = useQuery(GET_AUTHENTICATED_USER);
 
-	console.log(data);
+	// console.log(data);
 	const [logout, { loading, client }] = useMutation(LOGOUT, {
 		refetchQueries: ["GetAuthenticatedUser"],
 	});

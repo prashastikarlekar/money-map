@@ -42,3 +42,17 @@ export const GET_TRANSACTION_STATISTICS = gql`
 		}
 	}
 `;
+
+export const GET_CATEGORY_TRANSACTIONS = gql`
+	query GetCategoryTransactions($category: String!) {
+		categoryTransactions(category: $category) {
+			_id
+			description
+			paymentType
+			category
+			amount
+			location
+			date
+		}
+	}
+`;

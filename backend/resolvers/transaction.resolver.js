@@ -47,6 +47,17 @@ const transactionResolver = {
 				totalAmount,
 			}));
 		},
+		categoryTransactions: async (_, { category }, context) => {
+			if (!context.getUser()) throw new Error("Unauthorized");
+
+			const userId = context.getUser()._id;
+			if (category === "All") {
+				const transactions = await Transaction.find({ userId });
+				return transactions;
+			}
+			const transactions = await Transaction.find({ userId, category });
+			return transactions;
+		},
 	},
 	Mutation: {
 		createTransaction: async (_, { input }, context) => {
