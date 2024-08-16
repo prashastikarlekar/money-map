@@ -60,3 +60,11 @@ npm run dev
 - **Transaction History:** Users can view their transaction history on the history page, with color-coded cards for different transaction types.
 - **Update Transactions:** If needed, users can update their transactions using the provided update button.
 - **Logout:** Logging out will clear the cache, ensuring that the user's session is secure.
+  
+## Screenshots
+
+- **Sign Up** ![signUp](https://github.com/user-attachments/assets/ea653659-b370-4373-a90d-288fb5a09f40)
+- **Login** ![login](https://github.com/user-attachments/assets/de18ead4-e3e7-44d1-8e98-eb885a36c3f3)
+- **Homepage** ![homepage](https://github.com/user-attachments/assets/92db663a-4339-41e9-b35f-e91c0323b875)
+- **History** ![history](https://github.com/user-attachments/assets/cb394d9a-eb89-4101-878e-c92546ae7473)
+- **Update Transaction** ![updateTransaction](https://github.com/user-attachments/assets/f0e13761-b713-4463-96eb-635337fc208b)
