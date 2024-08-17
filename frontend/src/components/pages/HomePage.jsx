@@ -119,6 +119,7 @@ const HomePage = () => {
 						className='w-11 h-11 rounded-full border-[0.75px] border-gray-400 cursor-pointer'
 						alt='Avatar'
 					/>
+
 					{!loading && (
 						<MdLogout
 							className='mx-2 w-5 h-5 cursor-pointer'

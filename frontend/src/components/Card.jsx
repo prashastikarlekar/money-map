@@ -46,10 +46,10 @@ const Card = ({ transaction, authUser }) => {
 			toast.error(error.message);
 		}
 	};
-
+	// text-[#f5f4f1]
 	return (
 		<div
-			className={`rounded-md p-4 bg-gradient-to-br ${cardClass} shadow-2xl `}>
+			className={`rounded-md p-4  text-black shadow-2xl bg-gradient-to-br ${cardClass}`}>
 			<div className='flex flex-col gap-3'>
 				<div className='flex flex-row items-center justify-between'>
 					<h2 className='text-lg font-bold text-[#f5f4f1]'>{category}</h2>
@@ -71,6 +71,7 @@ const Card = ({ transaction, authUser }) => {
 						</Link>
 					</div>
 				</div>
+
 				<p className='text-[#f5f4f1] flex items-center gap-1 text-lg font-semibold'>
 					<BsCardText />
 					&nbsp; Description: &nbsp;
@@ -91,6 +92,7 @@ const Card = ({ transaction, authUser }) => {
 					&nbsp; Location: &nbsp;
 					<span className='font-normal'>{location || "N/A"}</span>
 				</p>
+
 				<div className='flex justify-between items-center'>
 					<p className='text-xs text-[#f5f4f1] font-bold'>{formattedDate}</p>
 					<img

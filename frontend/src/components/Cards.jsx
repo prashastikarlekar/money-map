@@ -15,6 +15,7 @@ import { FaAngleDoubleRight } from "react-icons/fa";
 
 const Cards = () => {
 	const [selectedCategory, setSelectedCategory] = useState("All");
+
 	const { data, loading } = useQuery(GET_TRANSACTIONS);
 	const { data: authUser } = useQuery(GET_AUTHENTICATED_USER);
 	const { data: userAndTransactions } = useQuery(GET_USER_AND_TRANSACTIONS, {
@@ -24,6 +25,7 @@ const Cards = () => {
 	const handleSelectedCategory = (e) => {
 		setSelectedCategory(e.target.value);
 	};
+
 	const { data: categoryTransactions, loadingCategoryTransactions } = useQuery(
 		GET_CATEGORY_TRANSACTIONS,
 		{
@@ -34,7 +36,7 @@ const Cards = () => {
 	const totalCards = categoryTransactions?.categoryTransactions?.length;
 	const cardsOnPage = 3;
 	const totalPages = Math.ceil(totalCards / cardsOnPage);
-	console.log("Total cards are : ", totalCards);
+	// console.log("Total cards are : ", totalCards);
 
 	const [currentPage, setCurrentPage] = useState(1);
 
@@ -50,6 +52,7 @@ const Cards = () => {
 	useEffect(() => {
 		// console.log("categoryTransactions: ", categoryTransactions);
 		setCurrentPage(1);
+		// console.log(sortTime);
 	}, [selectedCategory, categoryTransactions]);
 
 	return (
@@ -59,6 +62,7 @@ const Cards = () => {
 			</p>
 
 			<FilterTransaction handleSelectedCategory={handleSelectedCategory} />
+
 			<div className='w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-start my-10'>
 				{loadingCategoryTransactions && <p>Loading...</p>}
 				{!loadingCategoryTransactions &&
@@ -87,12 +91,17 @@ export default Cards;
 
 export const FilterTransaction = ({ handleSelectedCategory }) => {
 	return (
-		<div className='flex justify-center py-5 mt-2'>
+		<div className='flex justify-center py-5 mt-2 items-center'>
+			{/* <label htmlFor='transactionTime'>Category:&nbsp;</label> */}
+
 			<select
 				className='flex py-2 px-2 border-2 border-gray-300 shadow-md rounded-md text-lg'
 				name='transactionType'
 				id='transactionType'
 				onChange={handleSelectedCategory}>
+				<option disabled selected>
+					Category
+				</option>
 				<option value='All'>All</option>
 				<option value='saving'>Saving</option>
 				<option value='expense'>Expense</option>
@@ -104,7 +113,7 @@ export const FilterTransaction = ({ handleSelectedCategory }) => {
 
 export const Pagination = ({ totalPages, currentPage, handlePageChange }) => {
 	const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
-	console.log(pages);
+	// console.log(pages);
 
 	return (
 		<div className='flex justify-center py-5  gap-2'>
@@ -115,7 +124,6 @@ export const Pagination = ({ totalPages, currentPage, handlePageChange }) => {
 				disabled={currentPage === 1}
 				onClick={() => handlePageChange(currentPage - 1)}>
 				<FaAngleDoubleLeft className='text-gray-600  border-black' />
-				Previous
 			</button>
 			{pages.map((page) => (
 				<button
@@ -133,7 +141,6 @@ export const Pagination = ({ totalPages, currentPage, handlePageChange }) => {
 				}`}
 				disabled={currentPage === totalPages}
 				onClick={() => handlePageChange(currentPage + 1)}>
-				Next
 				<FaAngleDoubleRight className='text-gray-600  border-black' />
 			</button>
 		</div>
