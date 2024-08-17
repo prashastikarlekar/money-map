@@ -11,6 +11,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { GET_TRANSACTION_STATISTICS } from "../../graphql/queries/transaction.query";
 import { GET_AUTHENTICATED_USER } from "../../graphql/queries/user.query";
 import { useEffect, useState } from "react";
+import Footer from "./Footer";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 // const chartData = {
@@ -142,6 +143,7 @@ const HomePage = () => {
 				</div>
 				<Cards />
 			</div>
+			<Footer />
 		</>
 	);
 };
