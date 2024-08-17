@@ -49,6 +49,7 @@ const Cards = () => {
 
 	useEffect(() => {
 		// console.log("categoryTransactions: ", categoryTransactions);
+		setCurrentPage(1);
 	}, [selectedCategory, categoryTransactions]);
 
 	return (
